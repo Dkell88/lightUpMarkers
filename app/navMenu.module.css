@@ -1,0 +1,21 @@
+.nav {
+    display: flex;
+    background-color: white;
+    color: rgb(255, 115, 0);
+    height: 120px;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.links {
+    list-style: none;
+    display:  flex;
+    margin-right: 1rem;
+}
+
+.link li {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
