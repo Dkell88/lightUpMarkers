@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react';
 import RGBSlider from '../components/RGBSlider';
 
@@ -12,6 +13,7 @@ const ParentComponent: React.FC = () => {
 
   const handleColorChange = (color: Color) => {
     setPlayer1Color(color);
+    console.log(JSON.stringify(color));
     // Here you can also call the function to send request to ESP-01 server.
   }
 

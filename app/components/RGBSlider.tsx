@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
 
-export default function RGBSlider({onColorChange}: any) {
-  const [color, setColor] = useState({red: 0, green: 0, blue: 0});
+interface Color {
+  red: number;
+  green: number;
+  blue: number;
+}
 
-  const handleChange = (event: any) => {
+interface RGBSliderProps {
+  onColorChange: (color: Color) => void;
+}
+
+const RGBSlider: React.FC<RGBSliderProps> = ({onColorChange}) => {
+  const [color, setColor] = useState<Color>({red: 0, green: 0, blue: 0});
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setColor({
       ...color,
       [event.target.name]: parseInt(event.target.value, 10)
@@ -11,8 +21,7 @@ export default function RGBSlider({onColorChange}: any) {
   }
 
   const handleMouseUp = () => {
-    const {red, green, blue} = color;
-    onColorChange(red, green, blue);
+    onColorChange(color);
   }
 
   return (
@@ -23,3 +32,5 @@ export default function RGBSlider({onColorChange}: any) {
     </div>
   );
 }
+
+export default RGBSlider;
