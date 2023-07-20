@@ -24,10 +24,10 @@ const Config: React.FC = () => {
       <h3 className="text-1xl my-10">Use this page to configure the players marker colours.</h3>
         <div className="flex flex-row justify-around">
           <div>
-            <Player player ={'1'} setColor ={setPlayer1Color}></Player>
+            <Player player ={'1'} setColor ={setPlayer1Color} colour={player1Color}></Player>
           </div>
           <div>
-            <Player player ={'2'} setColor ={setPlayer2Color}></Player>
+            <Player player ={'2'} setColor ={setPlayer2Color} colour={player2Color}></Player>
           </div>
         </div>
     </main>

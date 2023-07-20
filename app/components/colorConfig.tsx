@@ -14,15 +14,16 @@ interface rgbColor {
 interface PlayerProps {
   player: string;
   setColor: SetStateFunction<rgbColor>;
+  colour: rgbColor;
 }
 
 
 const Player: FC<PlayerProps> = (props) => {
 
   return (
-    <div>
-      <h2 className="text-3xl font-bold underline">Player {props.player}</h2>
-      <RGBSlider setColor={props.setColor} />
+    <div className ="flex flex-col items-center">
+      <h2 className="text-3xl font-bold underline mb-10">Player {props.player}</h2>
+      <RGBSlider setColor={props.setColor} colour={props.colour} player={props.player}/>
     </div>
   );
 }
