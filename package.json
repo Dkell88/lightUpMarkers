@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@adobe/react-spectrum": "^3.28.0",
+    "@react-spectrum/color": "^3.0.0-beta.23",
     "@types/node": "20.3.1",
     "@types/react": "18.2.13",
     "@types/react-dom": "18.2.6",

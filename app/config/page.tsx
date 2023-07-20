@@ -1,31 +1,31 @@
 'use client'
 import React, { useState } from 'react';
-import RGBSlider from '../components/RGBSlider';
+import Player from '../components/colorConfig';
 
-interface Color {
+interface rgbColor {
   red: number;
   green: number;
   blue: number;
 }
 
-const ParentComponent: React.FC = () => {
-  const [player1Color, setPlayer1Color] = useState<Color>({red: 0, green: 0, blue: 0});
+const Config: React.FC = () => {
+  const [player1Color, setPlayer1Color] = useState<rgbColor>({red: 0, green: 0, blue: 0});
 
-  const handleColorChange = (color: Color) => {
+  const handleColorChange = (color: rgbColor) => {
     setPlayer1Color(color);
     console.log(JSON.stringify(color));
     // Here you can also call the function to send request to ESP-01 server.
   }
 
   return (
-    <div>
-      <h1>Configuration</h1>
-      <RGBSlider onColorChange={handleColorChange} />
-    </div>
+    <main>
+      <p>This is the config page</p>
+      <Player player ={'1'} setColor ={setPlayer1Color}></Player>
+    </main>
   );
 }
 
-export default ParentComponent;
+export default Config;
 
 
 

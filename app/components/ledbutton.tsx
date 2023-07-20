@@ -10,8 +10,9 @@ const handleColorChange = () => {
     .catch(error => console.log('error', error));
 }
 
-export default function LedButton() {
+const LedButton: React.FC = () => {
   return (
     <button onClick={handleColorChange}>Set colour</button>
   );
 }
+export default LedButton;
