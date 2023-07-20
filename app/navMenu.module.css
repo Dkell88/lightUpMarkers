@@ -5,17 +5,20 @@
     height: 120px;
     justify-content: space-between;
     align-items:center;
+    font-size: 25px;
 }
 
 .links {
     list-style: none;
     display:  flex;
-    margin-right: 1rem;
+    margin-right: 2rem;
+    justify-content: space-between;
+    gap: 40px;
 }
 
 .link li {
     height: 70px;
     display: flex;
     align-items: center;
-    padding: 1rem;
+    padding: 5rem;
 }

@@ -1,16 +1,16 @@
 function hsvToRgb(hue) {
-    var r, g, b;
-    var i;
-    var f, p, q, t;
+    let r, g, b;
+    let i;
+    let f, p, q, t;
     
     // Make sure our hue input is in the range [0, 360]
     hue = hue % 360;
     if (hue < 0) hue += 360;
     
-    var sat = 1;  // S = 100%
-    var val = 1;  // V = 100%
+    const sat = 1;  // S = 100%
+    const val = 1;  // V = 100%
 
-    var h = hue / 60; // sector 0 to 5
+    let h = hue / 60; // sector 0 to 5
     i = Math.floor(h);
     f = h - i; // factorial part of h
     p = val * (1 - sat);

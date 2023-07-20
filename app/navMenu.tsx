@@ -9,7 +9,7 @@ export default function NavMenu() {
         <Image
           src="/playontabletop-logo.svg" // Route of the image file
           width={216}
-          height={30}
+          height={100}
           alt="NextSpace Logo"
         />
       </Link>

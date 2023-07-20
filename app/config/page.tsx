@@ -10,6 +10,7 @@ interface rgbColor {
 
 const Config: React.FC = () => {
   const [player1Color, setPlayer1Color] = useState<rgbColor>({red: 0, green: 0, blue: 0});
+  const [player2Color, setPlayer2Color] = useState<rgbColor>({red: 0, green: 0, blue: 0});
 
   const handleColorChange = (color: rgbColor) => {
     setPlayer1Color(color);
@@ -19,8 +20,16 @@ const Config: React.FC = () => {
 
   return (
     <main>
-      <p>This is the config page</p>
-      <Player player ={'1'} setColor ={setPlayer1Color}></Player>
+      <h2 className="text-2xl font-bold my-20">Configuration Page</h2>
+      <h3 className="text-1xl my-10">Use this page to configure the players marker colours.</h3>
+        <div className="flex flex-row justify-around">
+          <div>
+            <Player player ={'1'} setColor ={setPlayer1Color}></Player>
+          </div>
+          <div>
+            <Player player ={'2'} setColor ={setPlayer2Color}></Player>
+          </div>
+        </div>
     </main>
   );
 }

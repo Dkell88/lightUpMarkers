@@ -1,7 +1,5 @@
 import React,{ useState, FC, useEffect } from 'react';
-import LedButton from './ledbutton';
 import RGBSlider from './RGBslider';
-import { Color } from '@react-stately/color';
 
 interface SetStateFunction<T> {
   (newValue: T): void;
@@ -23,8 +21,7 @@ const Player: FC<PlayerProps> = (props) => {
 
   return (
     <div>
-      <h2>Player {props.player}</h2>
-      <LedButton/>
+      <h2 className="text-3xl font-bold underline">Player {props.player}</h2>
       <RGBSlider setColor={props.setColor} />
     </div>
   );
