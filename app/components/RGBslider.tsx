@@ -20,6 +20,7 @@ interface RGBSliderProps {
   setColor: SetStateFunction<rgbColor>;
   colour: rgbColor;
   player: string;
+  key: number;
 }
 
 const ipAddresses = [
@@ -31,7 +32,7 @@ const ipAddresses = [
   '192.168.86.106'
 ];
 
-const handleColorChange = async (colour: rgbColor, player:string) => {
+const handleColorChange = async (colour: rgbColor, player:number) => {
   console.log(`Button pressed sending colours r=${colour.red}&g=${colour.green}&b=${colour.blue}&p=${player}`)
   try {
     const fetchPromises = ipAddresses.map(async (ip) => {
@@ -50,24 +51,19 @@ const handleColorChange = async (colour: rgbColor, player:string) => {
   }
 };
 
-// const handleColorChange = (colour:rgbColor) => {
-//   fetch(`http://192.168.86.101/led/color?r=${colour["red"]}&g=${colour["green"]}&b=${colour["blue"]}`, {method: 'GET'})
-//     .then(response => response.text())
-//     .then(text => console.log(text))
-//     .catch(error => console.log('error', error));
-// }
-
 const RGBSlider: FC<RGBSliderProps> = (props) => {
   const [value, setValue] = useState<Color>(parseColor('hsl(0, 100%, 50%)'));
 
   let boxColour = `rgb(${props.colour["red"]},${props.colour["green"]},${props.colour["blue"]}`;
 
   const handleChangeEnd = (newValue: Color) => {
-    props.setColor(hsvToRgb(newValue.getChannelValue('hue')));
+    const rgbColour = hsvToRgb(newValue.getChannelValue('hue'));
+    props.setColor(rgbColour);
+    window.localStorage.setItem(`${props.player}Colour`, JSON.stringify(rgbColour));
   };
 
   return (
-    <div className ="flex justify-around items-center">
+    <div className ="flex justify-around items-bottom">
       <div className ="flex justify-around my-5">
         <Provider theme={defaultTheme} height="100%">
             <ColorSlider
@@ -80,7 +76,7 @@ const RGBSlider: FC<RGBSliderProps> = (props) => {
         </Provider>
       </div>
       <div className ="flex justify-around mx-10">
-        <button className="h-10 px-5 rounded-full bg-orange-500 shadow-lg shadow-orange-500/50" onClick={() => handleColorChange(props.colour, props.player)}>Set colour</button>
+        <button className="text-gray-900 bg-gradient-to-r from-orange-200 via-orange-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-100 dark:focus:ring-orange-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onClick={() => handleColorChange(props.colour, props.key)}>Set colour</button>
       </div>
       <div 
             style={{
