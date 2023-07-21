@@ -2,10 +2,9 @@
 'use client'
 import { parseColor, Color } from '@react-stately/color';
 import { ColorSlider } from '@react-spectrum/color'
-import { useState, FC, useEffect } from 'react';
-import { Provider, defaultTheme, ActionButton } from "@adobe/react-spectrum";
+import { useState, FC } from 'react';
+import { Provider, defaultTheme } from "@adobe/react-spectrum";
 import hsvToRgb from '../helpers/HuetoRGB'
-import { string } from 'prop-types';
 
 interface rgbColor {
   red: number;
@@ -23,14 +22,7 @@ interface RGBSliderProps {
   key: number;
 }
 
-const ipAddresses = [
-  '192.168.86.101',
-  '192.168.86.102',
-  '192.168.86.103',
-  '192.168.86.104',
-  '192.168.86.105',
-  '192.168.86.106'
-];
+const ipAddresses = (process.env.IP_ADDRESSES || '').split(',');
 
 const handleColorChange = async (colour: rgbColor, player:number) => {
   console.log(`Button pressed sending colours r=${colour.red}&g=${colour.green}&b=${colour.blue}&p=${player}`)

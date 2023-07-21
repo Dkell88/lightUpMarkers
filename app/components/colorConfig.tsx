@@ -1,4 +1,4 @@
-import React,{ useState, FC, useEffect } from 'react';
+import React,{ FC } from 'react';
 import RGBSlider from './RGBslider';
 
 interface SetStateFunction<T> {

@@ -1,8 +1,6 @@
 // @ts-ignore
 'use client'
-import { parseColor, Color } from '@react-stately/color';
-import { useState, FC } from 'react';
-import hsvToRgb from '../helpers/HuetoRGB'
+import { FC } from 'react';
 
 interface rgbColor {
   red: number;
@@ -14,27 +12,36 @@ interface SetStateFunction<T> {
   (newValue: T): void;
 }
 interface objMarkerProps {
-  setColor: SetStateFunction<rgbColor>;
-  colour: rgbColor;
-  player: string;
+  player1colour: rgbColor;
+  player2colour: rgbColor;
+  player2: string;
+  player1: string;
   key: number;
+  IP: string;
 }
 
 const objMarker: FC<objMarkerProps> = (props) => {
-    const [value, setValue] = useState<Color>(parseColor('hsl(0, 100%, 50%)'));
   
-    let boxColour = `rgb(${props.colour["red"]},${props.colour["green"]},${props.colour["blue"]}`;
+    let boxColour = `rgb(${props.player1colour["red"]},${props.player1colour["green"]},${props.player1colour["blue"]}`;
   
-    const handleChangeEnd = (newValue: Color) => {
-      const rgbColour = hsvToRgb(newValue.getChannelValue('hue'));
-      props.setColor(rgbColour);
-      window.localStorage.setItem(`${props.player}Colour`, JSON.stringify(rgbColour));
-    };
+    const onClickObj = (player:string) => {
+      fetch(`http://${props.IP}/led/player?p=${player}`, {method: 'GET'})
+      .then(response => response.text())
+      .then(text => console.log(text))
+      .catch(error => console.log('error', error));
+
+      if (player = props.player1) {
+        boxColour = `rgb(${props.player1colour["red"]},${props.player1colour["green"]},${props.player1colour["blue"]}`;
+      } else {
+        boxColour = `rgb(${props.player2colour["red"]},${props.player2colour["green"]},${props.player2colour["blue"]}`;
   
+      }
+    }
+
     return (
       <div className ="flex justify-around items-bottom">
         <div className ="flex justify-around mx-10">
-          <button className="text-gray-900 bg-gradient-to-r from-orange-200 via-orange-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-100 dark:focus:ring-orange-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onClick={() => handleColorChange(props.colour, props.key)}>Set colour</button>
+          <button className="text-gray-900" onClick={() => onClickObj(props.player1)}>{props.player1}</button>
         </div>
         <div 
               style={{
@@ -43,8 +50,8 @@ const objMarker: FC<objMarkerProps> = (props) => {
                   borderRadius: '50%',
                   backgroundColor: boxColour,
               }}/>
-        <div className ="flex justify-around mx-10">
-          <button className="text-gray-900 bg-gradient-to-r from-orange-200 via-orange-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-100 dark:focus:ring-orange-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onClick={() => handleColorChange(props.colour, props.key)}>Set colour</button>
+        <div>
+          <button className ="flex justify-aroun" onClick={() => onClickObj(props.player2)}>{props.player2}</button>
         </div>
       </div>
     );
