@@ -30,7 +30,8 @@ const objMarker: FC<objMarkerProps> = (props) => {
 
       if (player === props.player1) {
         if (circleColour !== `rgb(${props.player1colour["red"]},${props.player1colour["green"]},${props.player1colour["blue"]}`){
-          setCircleColour(`rgb(${props.player1colour["red"]},${props.player1colour["green"]},${props.player1colour["blue"]}`)
+          setCircleColour(`rgb(${props.player1colour["red"]},${props.player1colour["green"]},${props.player1colour["blue"]}`);
+          playerID = 1;
         }else {
           playerID = 0;
           setCircleColour(`rgb(0,0,0`);
@@ -38,6 +39,7 @@ const objMarker: FC<objMarkerProps> = (props) => {
       } else {
         if (circleColour !== `rgb(${props.player2colour["red"]},${props.player2colour["green"]},${props.player2colour["blue"]}`){
           setCircleColour(`rgb(${props.player2colour["red"]},${props.player2colour["green"]},${props.player2colour["blue"]}`);
+          playerID = 2;
         }else {
           playerID = 0;
           setCircleColour(`rgb(0,0,0`);
