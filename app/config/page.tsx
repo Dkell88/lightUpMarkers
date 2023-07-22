@@ -1,6 +1,6 @@
 'use client'
 import React, { ChangeEvent, FormEvent, useState, useEffect } from 'react';
-import Player from '../components/colorConfig';
+import ColourConfig from '../components/colorConfig';
 
 interface rgbColor {
   red: number;
@@ -27,12 +27,10 @@ const Config: React.FC = () => {
       setPlayer2(savedPlayer2);
     }
 
-  console.log(savedPlayer1)
   const savedPlayer1Color = window.localStorage.getItem(`${savedPlayer1}Colour`);
   const savedPlayer2Color = window.localStorage.getItem(`${savedPlayer2}Colour`);
   console.log(savedPlayer1Color)
     if (savedPlayer1Color) {
-      console.log("Yes there is a saved color")
       const parsedPlayer1Color = JSON.parse(savedPlayer1Color);
       setPlayer1Color(parsedPlayer1Color);
     }
@@ -70,10 +68,10 @@ const Config: React.FC = () => {
       </div>
         <div className="flex flex-row justify-around">
           <div>
-            <Player player ={player1} setColor ={setPlayer1Color} colour={player1Color} key = {1}></Player>
+            <ColourConfig player ={player1} setColor ={setPlayer1Color} colour={player1Color} id = {1}></ColourConfig>
           </div>
           <div>
-            <Player player ={player2} setColor ={setPlayer2Color} colour={player2Color} key= {2}></Player>
+            <ColourConfig player ={player2} setColor ={setPlayer2Color} colour={player2Color} id= {2}></ColourConfig>
           </div>
         </div>
     </main>

@@ -19,7 +19,7 @@ interface RGBSliderProps {
   setColor: SetStateFunction<rgbColor>;
   colour: rgbColor;
   player: string;
-  key: number;
+  id: number;
 }
 
 const ipAddresses = (process.env.IP_ADDRESSES || '').split(',');
@@ -51,7 +51,7 @@ const RGBSlider: FC<RGBSliderProps> = (props) => {
   const handleChangeEnd = (newValue: Color) => {
     const rgbColour = hsvToRgb(newValue.getChannelValue('hue'));
     props.setColor(rgbColour);
-    window.localStorage.setItem(`${props.player}Colour`, JSON.stringify(rgbColour));
+    window.localStorage.setItem(`Player${props.id}Colour`, JSON.stringify(rgbColour));
   };
 
   return (
@@ -68,7 +68,7 @@ const RGBSlider: FC<RGBSliderProps> = (props) => {
         </Provider>
       </div>
       <div className ="flex justify-around mx-10">
-        <button className="text-gray-900 bg-gradient-to-r from-orange-200 via-orange-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-100 dark:focus:ring-orange-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onClick={() => handleColorChange(props.colour, props.key)}>Set colour</button>
+        <button className="text-gray-900 bg-gradient-to-r from-orange-200 via-orange-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-100 dark:focus:ring-orange-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onClick={() => handleColorChange(props.colour, props.id)}>Set colour</button>
       </div>
       <div 
             style={{
