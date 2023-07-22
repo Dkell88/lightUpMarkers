@@ -10,10 +10,12 @@ interface rgbColor {
 
 export default function Home() {
 
-  let player1 = '';
-  let player2 = '';
-  let player1Colour = {red: 0, green: 0, blue: 0};
-  let player2Colour = {red: 0, green: 0, blue: 0};
+  let player1 = window.localStorage.getItem('player1')|| '';
+  let player2 = window.localStorage.getItem('player2')|| '';
+  let tempP1Colour = window.localStorage.getItem(`${player1}Colour`)|| `{red: 0, green: 0, blue: 0}`;
+  let tempP2Colour = window.localStorage.getItem(`${player2}Colour`) || `{red: 0, green: 0, blue: 0}`;
+  let player1Colour = JSON.parse(tempP1Colour);
+  let player2Colour = JSON.parse(tempP2Colour);
   const ipAddresses = (process.env.IP_ADDRESSES || '').split(',');
 
   useEffect(() => {
@@ -38,7 +40,10 @@ export default function Home() {
       const parsedPlayer2Color = JSON.parse(savedPlayer2Color);
       player2Colour = parsedPlayer2Color;
     }
-  
+    // console.log(`player1: ${player1}`)
+    // console.log(`player2: ${player2}`)
+    // console.log(`player1Colour: ${JSON.stringify(player1Colour)}`)
+    // console.log(`player2Colour: ${JSON.stringify(player2Colour)}`)
   }, []);
   
 
@@ -51,7 +56,7 @@ export default function Home() {
                 key ={1}
                 IP = {ipAddresses[1]}
                     ></ObjMarker>
-      <ObjMarker player1colour = {player1Colour}
+      {/* <ObjMarker player1colour = {player1Colour}
                   player2colour = {player2Colour}
                   player1 = {player1}
                   player2 = {player2}
@@ -85,7 +90,7 @@ export default function Home() {
                   player2 = {player2}
                   key ={6}
                   IP = {ipAddresses[6]}
-                  ></ObjMarker>
+                  ></ObjMarker> */}
     </main>
   )
 }

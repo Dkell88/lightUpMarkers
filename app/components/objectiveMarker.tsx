@@ -1,6 +1,6 @@
 // @ts-ignore
 'use client'
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 interface rgbColor {
   red: number;
@@ -22,37 +22,33 @@ interface objMarkerProps {
 
 const objMarker: FC<objMarkerProps> = (props) => {
   
-    let boxColour = `rgb(${props.player1colour["red"]},${props.player1colour["green"]},${props.player1colour["blue"]}`;
-  
+    let [circleColour, setCircleColour] = useState(`rgb(${props.player1colour["red"]},${props.player1colour["green"]},${props.player1colour["blue"]}`); 
+      
     const onClickObj = (player:string) => {
-      fetch(`http://${props.IP}/led/player?p=${player}`, {method: 'GET'})
-      .then(response => response.text())
-      .then(text => console.log(text))
-      .catch(error => console.log('error', error));
+      // fetch(`http://${props.IP}/led/player?p=${player}`, {method: 'GET'})
+      // .then(response => response.text())
+      // .then(text => console.log(text))
+      // .catch(error => console.log('error', error));
 
-      if (player = props.player1) {
-        boxColour = `rgb(${props.player1colour["red"]},${props.player1colour["green"]},${props.player1colour["blue"]}`;
+      if (player === props.player1) {
+        setCircleColour(`rgb(${props.player1colour["red"]},${props.player1colour["green"]},${props.player1colour["blue"]}`);
       } else {
-        boxColour = `rgb(${props.player2colour["red"]},${props.player2colour["green"]},${props.player2colour["blue"]}`;
+        setCircleColour(`rgb(${props.player2colour["red"]},${props.player2colour["green"]},${props.player2colour["blue"]}`);
   
       }
     }
 
     return (
-      <div className ="flex justify-around items-bottom">
-        <div className ="flex justify-around mx-10">
-          <button className="text-gray-900" onClick={() => onClickObj(props.player1)}>{props.player1}</button>
-        </div>
-        <div 
+      <div className ="flex justify-stretch">
+          <button className="px-6 py-3.5 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => onClickObj(props.player1)}>Set Obj for: {props.player1}</button>
+        <div className="flex justify-center items-center rounded-full mt-6"
               style={{
                   width: '80px',
                   height: '80px',
                   borderRadius: '50%',
-                  backgroundColor: boxColour,
-              }}/>
-        <div>
-          <button className ="flex justify-aroun" onClick={() => onClickObj(props.player2)}>{props.player2}</button>
-        </div>
+                  backgroundColor: circleColour,
+              }}><span>{props.key}</span></div>
+          <button className ="px-6 py-3.5 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => onClickObj(props.player2)}>Set Obj for: {props.player2}</button>
       </div>
     );
   }
