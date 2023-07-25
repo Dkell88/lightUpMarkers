@@ -1,6 +1,7 @@
 'use client'
 import React, { ChangeEvent, FormEvent, useState, useEffect } from 'react';
 import ColourConfig from '../components/colorConfig';
+import BSlider from '../components/brightnessSlider';
 
 interface rgbColor {
   red: number;
@@ -8,12 +9,43 @@ interface rgbColor {
   blue: number;
 }
 
+const ipAddresses = ["0.0.0.0",
+"192.168.86.101",
+"192.168.86.102",
+"192.168.86.103",
+"192.168.86.104",
+"192.168.86.105",
+"192.168.86.106"];
+
 const Config: React.FC = () => {
   const [player1Color, setPlayer1Color] = useState<rgbColor>({red: 0, green: 0, blue: 0});
   const [player2Color, setPlayer2Color] = useState<rgbColor>({red: 0, green: 0, blue: 0});
 
   const [player1, setPlayer1] = useState<string>('Player 1');
   const [player2, setPlayer2] = useState<string>('Player 2');
+
+  const [brightness, setBrightness] = useState(50); // Initial value can be adjusted
+
+  const handleBrightnessChange = async (newBrightness: number) => {
+    // Handle any additional logic you want when the brightness changes
+    console.log(`Brightness changed ${newBrightness}`);
+    setBrightness(newBrightness);
+    try {
+      const fetchPromises = ipAddresses.map(async (ip) => {
+        const response = await fetch(`http://${ip}/led/brightness?b=${newBrightness}`, {
+          method: 'GET'
+        });
+  
+        const text = await response.text();
+        console.log(`Response from ${ip}:`, text);
+      });
+  
+      await Promise.all(fetchPromises);
+      console.log('All fetch commands completed successfully.');
+    } catch (error) {
+      console.log('Error occurred during fetch commands:', error);
+    }
+  };
 
   // when the component mounts, retrieve the name from localStorage
   useEffect(() => {
@@ -74,6 +106,7 @@ const Config: React.FC = () => {
             <ColourConfig player ={player2} setColor ={setPlayer2Color} colour={player2Color} id= {2}></ColourConfig>
           </div>
         </div>
+        <BSlider onChange={handleBrightnessChange} initialValue={brightness} />
     </main>
   );
 }
