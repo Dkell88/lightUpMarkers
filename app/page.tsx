@@ -9,10 +9,17 @@ export default function Home() {
   let player2 = window.localStorage.getItem('player2')|| '';
   let tempP1Colour = window.localStorage.getItem(`Player1Colour`)|| `{"red": 0, "green": 0, "blue": 0}`;
   let tempP2Colour = window.localStorage.getItem(`Player2Colour`) || `{"red": 0, "green": 0, "blue": 0}`;
-  console.log(tempP1Colour);
   let player1Colour = JSON.parse(tempP1Colour);
   let player2Colour = JSON.parse(tempP2Colour);
-  const ipAddresses = (process.env.IP_ADDRESSES || '').split(',');
+  //const ipAddresses = (process.env.IP_ADDRESSES || '').split(',');
+  const ipAddresses = ["0.0.0.0",
+                      "192.168.86.101",
+                      "192.168.86.102",
+                      "192.168.86.103",
+                      "192.168.86.104",
+                      "192.168.86.105",
+                      "192.168.86.106"];
+
 
   useEffect(() => {
     const savedPlayer1 = window.localStorage.getItem('player1');
