@@ -29,7 +29,7 @@ const Slider: React.FC<SliderProps> = ({ onChange, initialValue }) => {
         id="brightnessSlider"
         type="range"
         min="0"
-        max="100"
+        max="255"
         step="1"
         value={brightness}
         onChange={handleSliderChange}

@@ -9,7 +9,7 @@ interface rgbColor {
   blue: number;
 }
 
-const ipAddresses = ["0.0.0.0",
+const ipAddresses = [
 "192.168.86.101",
 "192.168.86.102",
 "192.168.86.103",
@@ -88,25 +88,29 @@ const Config: React.FC = () => {
     <main>
       <h2 className="text-2xl font-bold my-20">Configuration Page</h2>
       <h3 className="text-1xl my-10">Use this page to configure the players marker colours.</h3>
-      <div  className="flex flex-row justify-around">
-        <form>
-          <label htmlFor="player1">Player 1:</label>
-          <input type="text" id="player1" name="player1" value={player1} onChange={handleChange('player1', setPlayer1)} />
-        </form>
-        <form>
-          <label htmlFor="player2">Player 2:</label>
-          <input type="text" id="player2" name="player2" value={player2} onChange={handleChange('player2', setPlayer2)} />
-        </form>
-      </div>
-        <div className="flex flex-row justify-around">
-          <div>
-            <ColourConfig player ={player1} setColor ={setPlayer1Color} colour={player1Color} id = {1}></ColourConfig>
-          </div>
-          <div>
-            <ColourConfig player ={player2} setColor ={setPlayer2Color} colour={player2Color} id= {2}></ColourConfig>
+      <div className="border-4 pt-5">
+        <div  className="flex flex-row justify-around">
+          <form >
+            <label htmlFor="player1" className="mx-5">Player 1:</label>
+            <input className="border-4" type="text" id="player1" name="player1" value={player1} onChange={handleChange('player1', setPlayer1)} />
+          </form>
+          <form>
+            <label htmlFor="player2">Player 2:</label>
+            <input className="border-4" type="text" id="player2" name="player2" value={player2} onChange={handleChange('player2', setPlayer2)} />
+          </form>
+        </div>
+          <div className="flex flex-row justify-around">
+            <div>
+              <ColourConfig player ={player1} setColor ={setPlayer1Color} colour={player1Color} id = {1}></ColourConfig>
+            </div>
+            <div>
+              <ColourConfig player ={player2} setColor ={setPlayer2Color} colour={player2Color} id= {2}></ColourConfig>
+            </div>
           </div>
         </div>
-        <BSlider onChange={handleBrightnessChange} initialValue={brightness} />
+        <div className="flex flex-row justify-around my-5 py-5 border-4">
+          <BSlider onChange={handleBrightnessChange} initialValue={brightness} />
+        </div>
     </main>
   );
 }

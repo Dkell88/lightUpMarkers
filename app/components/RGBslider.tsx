@@ -23,7 +23,7 @@ interface RGBSliderProps {
 }
 
 //const ipAddresses = (process.env.IP_ADDRESSES || '').split(',');
-const ipAddresses = [
+const ipAddresses = ["0.0.0.0",
 "192.168.86.101",
 "192.168.86.102",
 "192.168.86.103",

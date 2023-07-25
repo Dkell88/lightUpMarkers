@@ -22,8 +22,8 @@ interface PlayerProps {
 const ColourConfig: FC<PlayerProps> = (props) => {
 
   return (
-    <div className ="flex flex-col items-center">
-      <h2 className="text-3xl font-bold underline mb-10">{props.player}</h2>
+    <div className ="flex flex-col items-center my-10">
+      {/* <h2 className="text-3xl font-bold underline mb-10">{props.player}</h2> */}
       <RGBSlider setColor={props.setColor} colour={props.colour} player={props.player} id={props.id}/>
     </div>
   );
