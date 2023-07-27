@@ -9,13 +9,15 @@ interface rgbColor {
   blue: number;
 }
 
-const ipAddresses = [
-"192.168.86.101",
-"192.168.86.102",
-"192.168.86.103",
-"192.168.86.104",
-"192.168.86.105",
-"192.168.86.106"];
+// const ipAddresses = [
+// "192.168.86.101",
+// "192.168.86.102",
+// "192.168.86.103",
+// "192.168.86.104",
+// "192.168.86.105",
+// "192.168.86.106"];
+
+const ipAddresses = ["192.168.86.103"];
 
 const Config: React.FC = () => {
   const [player1Color, setPlayer1Color] = useState<rgbColor>({red: 0, green: 0, blue: 0});

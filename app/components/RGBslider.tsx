@@ -23,13 +23,15 @@ interface RGBSliderProps {
 }
 
 //const ipAddresses = (process.env.IP_ADDRESSES || '').split(',');
-const ipAddresses = ["0.0.0.0",
-"192.168.86.101",
-"192.168.86.102",
-"192.168.86.103",
-"192.168.86.104",
-"192.168.86.105",
-"192.168.86.106"];
+// const ipAddresses = ["0.0.0.0",
+// "192.168.86.101",
+// "192.168.86.102",
+// "192.168.86.103",
+// "192.168.86.104",
+// "192.168.86.105",
+// "192.168.86.106"];
+
+const ipAddresses = ["192.168.86.103"];
 
 const handleColorChange = async (colour: rgbColor, player:number) => {
   console.log(`Button pressed sending colours r=${colour.red}&g=${colour.green}&b=${colour.blue}&p=${player}`)

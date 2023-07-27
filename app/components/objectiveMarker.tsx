@@ -46,6 +46,7 @@ const objMarker: FC<objMarkerProps> = (props) => {
         }
       }
 
+      console.log(playerID);
       fetch(`http://${props.IP}/led/player?p=${playerID}`, {method: 'GET'})
       .then(response => response.text())
       .then(text => console.log(text))

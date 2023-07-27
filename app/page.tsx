@@ -52,7 +52,7 @@ export default function Home() {
 
   return (
     <main >
-      <ObjMarker player1colour = {player1Colour}
+      {/* <ObjMarker player1colour = {player1Colour}
                 player2colour = {player2Colour}
                 player1 = {player1}
                 player2 = {player2}
@@ -65,7 +65,7 @@ export default function Home() {
                   player2 = {player2}
                   id ={2}
                   IP = {ipAddresses[2]}
-                  ></ObjMarker>
+                  ></ObjMarker> */}
       <ObjMarker player1colour = {player1Colour}
                 player2colour = {player2Colour}
                 player1 = {player1}
@@ -73,7 +73,7 @@ export default function Home() {
                 id ={3}
                 IP = {ipAddresses[3]}
                     ></ObjMarker>
-      <ObjMarker player1colour = {player1Colour}
+      {/* <ObjMarker player1colour = {player1Colour}
                   player2colour = {player2Colour}
                   player1 = {player1}
                   player2 = {player2}
@@ -93,7 +93,7 @@ export default function Home() {
                   player2 = {player2}
                   id ={6}
                   IP = {ipAddresses[6]}
-                  ></ObjMarker>
+                  ></ObjMarker> */}
     </main>
   )
 }
