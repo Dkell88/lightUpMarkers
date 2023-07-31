@@ -45,8 +45,6 @@ const objMarker: FC<objMarkerProps> = (props) => {
           setCircleColour(`rgb(0,0,0`);
         }
       }
-
-      console.log(playerID);
       fetch(`http://${props.IP}/led/player?p=${playerID}`, {method: 'GET'})
       .then(response => response.text())
       .then(text => console.log(text))

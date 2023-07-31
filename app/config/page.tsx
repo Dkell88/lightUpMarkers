@@ -9,15 +9,13 @@ interface rgbColor {
   blue: number;
 }
 
-// const ipAddresses = [
-// "192.168.86.101",
-// "192.168.86.102",
-// "192.168.86.103",
-// "192.168.86.104",
-// "192.168.86.105",
-// "192.168.86.106"];
-
-const ipAddresses = ["192.168.86.103"];
+const ipAddresses = [
+"192.168.86.101",
+"192.168.86.102",
+"192.168.86.103",
+"192.168.86.104",
+"192.168.86.105",
+"192.168.86.106"];
 
 const Config: React.FC = () => {
   const [player1Color, setPlayer1Color] = useState<rgbColor>({red: 0, green: 0, blue: 0});
@@ -30,7 +28,6 @@ const Config: React.FC = () => {
 
   const handleBrightnessChange = async (newBrightness: number) => {
     // Handle any additional logic you want when the brightness changes
-    console.log(`Brightness changed ${newBrightness}`);
     setBrightness(newBrightness);
     try {
       const fetchPromises = ipAddresses.map(async (ip) => {
@@ -61,9 +58,9 @@ const Config: React.FC = () => {
       setPlayer2(savedPlayer2);
     }
 
-  const savedPlayer1Color = window.localStorage.getItem(`${savedPlayer1}Colour`);
-  const savedPlayer2Color = window.localStorage.getItem(`${savedPlayer2}Colour`);
-  console.log(savedPlayer1Color)
+  const savedPlayer1Color = window.localStorage.getItem(`Player1Colour`);
+  const savedPlayer2Color = window.localStorage.getItem(`Player2Colour`);
+
     if (savedPlayer1Color) {
       const parsedPlayer1Color = JSON.parse(savedPlayer1Color);
       setPlayer1Color(parsedPlayer1Color);
@@ -76,9 +73,6 @@ const Config: React.FC = () => {
   }, []);
 
 
-  // const handleChange = (set: (name: string) => void) => (event: ChangeEvent<HTMLInputElement>) => {
-  //   set(event.target.value);
-  // }
   const handleChange = (player: string, set: (name: string) => void) => (event: ChangeEvent<HTMLInputElement>) => {
     const name = event.target.value;
     set(name);
